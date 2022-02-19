@@ -27,7 +27,7 @@ const addUser = async (decoded) => {
   try {
     let user;
     user = await Users.findOne({ googleId: decoded.id }).exec();
-    if (user) {
+    if (!user) {
       user = await createUser(decoded);
     }
     user = user.toJSON();

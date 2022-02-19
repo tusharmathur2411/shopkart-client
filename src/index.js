@@ -20,7 +20,7 @@ mongoose.connect(
     useNewUrlParser: true,
     useUnifiedTopology: true
   },
-  (err) => console.log("DB connecnted")
+  (err) => console.log("DB connected")
 );
 
 app.use(express.json());
@@ -29,8 +29,7 @@ app.use("/auth", authRouter);
 app.use("/products", productsRouter);
 
 app.get("/", (req, res) => {
-  const os = require("os");
-  console.log(os.hostname());
+  console.log("HELLO");
   res.send("Hello World");
 });
 
