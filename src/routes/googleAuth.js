@@ -97,7 +97,6 @@ app.get("/google", async (req, res) => {
   const addResponse = await addUser(googleUser);
 
   if (!addResponse.ok) return res.status(500).json(addResponse);
-  console.log(addResponse.user);
   const token = jwt.sign(addResponse.user, JWT_SECRET);
 
   res.cookie(COOKIE_NAME, token, {

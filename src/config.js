@@ -1,8 +1,10 @@
+require("dotenv").config();
+
 const configConstants = {
-  GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID || "",
-  GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET || "",
-  SERVER_ROOT_URI: "https://shopkart-client.herokuapp.com",
-  UI_ROOT_URI: process.env.UI_ROOT_URI || "https://l74xe.csb.app",
+  GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+  GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
+  SERVER_ROOT_URI: process.env.SERVER_ROOT_URI,
+  UI_ROOT_URI: process.env.UI_ROOT_URI,
   JWT_SECRET: "shhhhh",
   COOKIE_NAME: "auth_token",
   REDIRECT_HTML: `<!DOCTYPE html>

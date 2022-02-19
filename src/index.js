@@ -29,6 +29,8 @@ app.use("/auth", authRouter);
 app.use("/products", productsRouter);
 
 app.get("/", (req, res) => {
+  const os = require("os");
+  console.log(os.hostname());
   res.send("Hello World");
 });
 
