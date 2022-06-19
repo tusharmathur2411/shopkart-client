@@ -2,7 +2,6 @@ const app = require("express").Router();
 const jwt = require("jsonwebtoken");
 const axios = require("axios");
 const querystring = require("querystring");
-const cookieParser = require("cookie-parser");
 const {
   SERVER_ROOT_URI,
   GOOGLE_CLIENT_ID,
@@ -13,8 +12,6 @@ const {
 } = require("../config");
 
 const { addUser, checkEmail } = require("../user");
-
-app.use(cookieParser());
 
 const redirectURI = "auth/google";
 
@@ -69,7 +66,7 @@ function getTokens({ code, clientId, clientSecret, redirectUri }) {
 
 // Getting the user from Google with the code
 app.get("/google", async (req, res) => {
-  const { code } = req.query;
+  const { query: { code } } = req;
 
   const { id_token, access_token } = await getTokens({
     code,

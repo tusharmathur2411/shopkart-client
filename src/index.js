@@ -1,14 +1,20 @@
 const express = require("express");
 const app = express();
 const productsRouter = require("./routes/products");
+const cartsRouter = require("./routes/carts");
+const ordersRouter = require("./routes/orders");
 const authRouter = require("./routes/googleAuth");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const { UI_ROOT_URI } = require("./config");
+const cookieParser = require('cookie-parser');
+const authenticateJWT = require("./middleware/authenticateJWT");
+
+app.use(cookieParser());
 
 app.use(
   cors({
-    origin: UI_ROOT_URI,
+    origin: [UI_ROOT_URI, "http://localhost:3000"],
     credentials: true
   })
 );
@@ -27,6 +33,8 @@ app.use(express.json());
 
 app.use("/auth", authRouter);
 app.use("/products", productsRouter);
+app.use("/carts", authenticateJWT, cartsRouter);
+app.use("/orders", authenticateJWT, ordersRouter);
 
 app.get("/", (req, res) => {
   console.log("HELLO");
